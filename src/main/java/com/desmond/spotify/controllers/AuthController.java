@@ -7,6 +7,7 @@ import com.desmond.spotify.response.JwtAuthenticationResponse;
 import com.desmond.spotify.security.JwtTokenProvider;
 import com.desmond.spotify.services.UserService;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -39,6 +40,9 @@ public class AuthController {
     private UserService userService;
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     JwtTokenProvider tokenProvider;
 
     @PostMapping("/signin")
@@ -64,10 +68,14 @@ public class AuthController {
 
         UserDto userDto = modelMapper.map(signUpRequest, UserDto.class);
 
+        if(userRepository.existsByEmail(signUpRequest.getEmail())){
+            return new ResponseEntity(new ApiResponse(false, "Email is already taken!"),
+                    HttpStatus.BAD_REQUEST);
+        }
+
         UserDto createdUser =  userService.createUser(userDto);
 
-        URI location = ServletUriComponentsBuilder
-                .fromCurrentContextPath().path("/api/users/{username}")
+        URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/users/{username}")
                 .buildAndExpand(createdUser.getUserId()).toUri();
 
         return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));
