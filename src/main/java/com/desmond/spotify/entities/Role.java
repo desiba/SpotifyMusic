@@ -1,4 +1,4 @@
-package com.desmond.spotify.model;
+package com.desmond.spotify.entities;
 
 import org.hibernate.annotations.NaturalId;
 import javax.persistence.*;

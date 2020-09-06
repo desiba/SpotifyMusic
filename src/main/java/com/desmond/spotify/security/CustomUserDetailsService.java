@@ -1,6 +1,6 @@
 package com.desmond.spotify.security;
 
-import com.desmond.spotify.model.User;
+import com.desmond.spotify.entities.User;
 import com.desmond.spotify.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
