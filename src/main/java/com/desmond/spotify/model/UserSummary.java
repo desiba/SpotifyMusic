@@ -8,6 +8,8 @@ public class UserSummary {
     private String lastname;
     private String email;
 
+    public UserSummary(){}
+
     public UserSummary(Long id, String userId, String firstname, String lastname, String email) {
         this.id = id;
         this.userId = userId;

@@ -1,4 +1,4 @@
-package com.desmond.spotify.model;
+package com.desmond.spotify.entities;
 
 public enum  RoleName {
     ROLE_USER,

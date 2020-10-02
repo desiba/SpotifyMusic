@@ -53,17 +53,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            .csrf()
+                .csrf()
                 .disable()
-            .exceptionHandling()
+                .exceptionHandling()
                 .authenticationEntryPoint(unauthorizedHandler)
                 .and()
-            .authorizeRequests()
-            .antMatchers(HttpMethod.POST, "/api/auth/signup","/api/auth/signin")
+                .authorizeRequests()
+                .antMatchers(HttpMethod.POST, "/api/auth/signup", "/api/auth/signin", "/api/song/uploadsong", "/api/artiste/**", "/api/album/**/*")
                 .permitAll()
-            .antMatchers(HttpMethod.GET, "/api/user/**")
+                .antMatchers(HttpMethod.GET, "/api/user/**", "/api/artiste/**","/api/album/**")
                 .permitAll()
-            .anyRequest().authenticated();
+                .anyRequest().authenticated();
 
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }

@@ -1,5 +1,6 @@
-package com.desmond.spotify.model;
+package com.desmond.spotify.entities;
 
+import com.desmond.spotify.entities.Role;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
