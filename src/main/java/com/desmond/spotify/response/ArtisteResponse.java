@@ -1,36 +1,19 @@
-package com.desmond.spotify.entities;
+package com.desmond.spotify.response;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
-import java.util.List;
 
-@Entity
-@Table(name = "artiste")
-public class Artiste {
+public class ArtisteResponse {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    @NotBlank
     private String artisteId;
 
-    @NotBlank
     private String fullName;
 
-    @NotBlank
     private String stageName;
 
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
+    public ArtisteResponse(String artisteId, String fullName, String stageName) {
+        this.artisteId = artisteId;
+        this.fullName = fullName;
+        this.stageName = stageName;
     }
 
     public String getArtisteId() {
@@ -56,5 +39,4 @@ public class Artiste {
     public void setStageName(String stageName) {
         this.stageName = stageName;
     }
-
 }

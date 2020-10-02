@@ -1,43 +1,27 @@
-package com.desmond.spotify.entities;
+package com.desmond.spotify.response;
 
-import javax.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
-import java.io.File;
-import java.util.Date;
 
+public class AlbumResponse {
 
-@Entity
-@Table(name = "album")
-public class Album {
+    private String artisteId;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-
-    public String artisteId;
-
-    @NotBlank
-    @Size(max = 15)
     private String albumName;
 
-    @NotBlank
     private String dateReleased;
 
-    @NotBlank
     private String producerName;
 
-    @NotBlank
-    @Size(max = 15)
     private String recordLabel;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public AlbumResponse(String artisteId, String albumName, String dateReleased, String producerName, String recordLabel) {
+        this.artisteId = artisteId;
+        this.albumName = albumName;
+        this.dateReleased = dateReleased;
+        this.producerName = producerName;
+        this.recordLabel = recordLabel;
     }
 
     public String getArtisteId() {

@@ -25,9 +25,16 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    ModelMapper modelMapper;
+
     @GetMapping("/me")
     public UserSummary getCurrentUser(@CurrentUser UserPrincipal currentUser) {
-        UserSummary userSummary = new UserSummary(currentUser.getId(), currentUser.getUserId(), currentUser.getFirstname(), currentUser.getLastname(), currentUser.getEmail());
+        UserSummary userSummary = new UserSummary(currentUser.getId(),
+                                                    currentUser.getUserId(),
+                                                    currentUser.getFirstname(),
+                                                    currentUser.getLastname(),
+                                                    currentUser.getEmail());
         return userSummary;
     }
 
@@ -35,7 +42,6 @@ public class UserController {
     @GetMapping("/getAllUsers")
     public List<UserSummary> getAllUsers(@RequestParam(value = "page", defaultValue = "0") int page, @RequestParam(value = "limit", defaultValue = "2") int limit) {
 
-        ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration()
                 .setMatchingStrategy(MatchingStrategies.STRICT);
 

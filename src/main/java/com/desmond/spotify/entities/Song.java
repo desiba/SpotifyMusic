@@ -14,12 +14,12 @@ public class Song {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @NotBlank
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "album_id", nullable = true)
-    private Album albumId;
+    //@ManyToOne(fetch = FetchType.LAZY)
+    //@JoinColumn(name = "album_id", nullable = true)
+    private String albumId;
 
     @NotBlank
     @Column(name = "song_name")
@@ -38,11 +38,19 @@ public class Song {
     private long fileSize;
 
 
-    public Album getAlbumId() {
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getAlbumId() {
         return albumId;
     }
 
-    public void setAlbumId(Album albumId) {
+    public void setAlbumId(String albumId) {
         this.albumId = albumId;
     }
 

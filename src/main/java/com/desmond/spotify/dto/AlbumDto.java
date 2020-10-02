@@ -1,42 +1,33 @@
-package com.desmond.spotify.entities;
+package com.desmond.spotify.dto;
+
+import com.desmond.spotify.entities.Artiste;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.io.File;
+import java.io.Serializable;
 import java.util.Date;
 
+public class AlbumDto implements Serializable {
 
-@Entity
-@Table(name = "album")
-public class Album {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    private String artisteId;
 
-    public String artisteId;
-
-    @NotBlank
-    @Size(max = 15)
     private String albumName;
 
-    @NotBlank
     private String dateReleased;
 
-    @NotBlank
     private String producerName;
 
-    @NotBlank
-    @Size(max = 15)
     private String recordLabel;
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
